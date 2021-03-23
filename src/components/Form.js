@@ -8,6 +8,11 @@ class Form extends Component {
             TODO - set initial state for link name and URL 
 
         */
+       this.state = {
+           name: "",
+           url:"",
+       };
+
     }
 
     handleChange = event => {
@@ -31,6 +36,14 @@ class Form extends Component {
         return(
             <form>
                 {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
+                <label htmlFor="name">
+
+                </label>
+                <input type = "text" id="name" name = "name"/>
+                <label htmlFor="name">
+
+                 </label>
+                <input type = "text" id="url" url = "url"/>
             </form>
         )
     
