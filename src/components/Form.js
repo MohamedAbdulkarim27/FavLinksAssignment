@@ -9,17 +9,22 @@ class Form extends Component {
 
         */
        this.state = {
-           name: "",
-           url:"",
+           name: '',
+           url: '',
        };
-
+this.handleChange = this.handleChange.bind(this);
+this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    handleChange = event => {
+    handleChange = (event) => {
         /*
             TODO - Logic for changing state based on form changes
         */
-    }
+       this.setState({
+           [event.target.name]: event.target.value,
+
+       });
+    };
 
     onFormSubmit = (event) => {
         // to prevent page reload on form submit
@@ -28,26 +33,45 @@ class Form extends Component {
         /*
             TODO - Logic for calling props to handle submission and setting state changes
         */
+      
 
-    }
+            this.props.handleSubmit(this.state);
+            this.setState({
+                name: '',
+                URL: '',
+            });
+        };
+    
 
     render() {
 
         return(
             <form>
                 {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
-                <label htmlFor="name">
-
+                <label htmlFor="name" id='name'>
+                Name
                 </label>
-                <input type = "text" id="name" name = "name"/>
-                <label htmlFor="name">
-
+                <input type = 'text' 
+                name = 'name'
+                value= {this.state.name}
+                onChange={(event) => this.handleChange(event)}
+                />
+                <label htmlFor="URL">
+                Url
                  </label>
-                <input type = "text" id="url" url = "url"/>
+                <input
+                 type = 'text' 
+                  name = 'URL'
+                  value={this.state.URL}
+                  onChange={(event) => this.handleChange(event)}
+                  />
+                  <button onClick ={(event) =>this.onFormSubmit(event)}>Add</button>
+                  
             </form>
-        )
+        );
+}
     
-    }
+    
 }
 
 export default Form;

@@ -7,21 +7,29 @@ class LinkContainer extends React.Component {
         super(props)
         /* TODO - Create state object for storing favLinks */
        this.state ={
-            favlinks : [{name:"Mohamed",URL:"www.google.com"}]
+            favLinks : [],
         }
+        this.removeCharacter = this.removeCharacter.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    removeCharacter = index => {
+    removeCharacter = (index) => {
         /*
             TODO - Create logic for setting the state to filter array and remove favLink at index
         */
-    }
+       let updatedFavLinks = this.state.favLinks.filter((fav,i)=>{
+           return i !==index;
+       });
+       this.setState({
+           favLinks: updatedFavLinks
+       });
+    };
 
     handleSubmit = favLink => {
-        /*
-            TODO - Create logic to setState and add new favLink to favLinks array in state
-        */
-    }
+       this.setState({
+           favLinks: [...this.state.favLinks,favLink],
+       });
+    };
 
     render() {
 
@@ -31,14 +39,15 @@ class LinkContainer extends React.Component {
                 <p>Add a new url with a name and link to the table.</p>
                 {/*TODO - Add Table Component */}
                 <Table
-                 linkData={this.state.favlinks}/>
+                 linkData={this.state.favLinks}
                 removeLink={this.removeCharacter}
+                />
                 
                 <br/>
 
                 <h3>Add New</h3>
                 {/*TODO - Add Form Component */}
-                <Form/>
+                <Form handleSubmit={this.handleSubmit}/>
             </div>
         );
     }
